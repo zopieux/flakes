@@ -1,11 +1,11 @@
 {
   description = "A Go development environment";
 
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs?ref=nixpkgs-unstable";
 
   outputs = { self, nixpkgs }:
     let
-      goVersion = 20;
+      goVersion = 24;
       overlays = [ (final: prev: { go = prev."go_1_${toString goVersion}"; }) ];
       supportedSystems = [ "x86_64-linux" ];
       forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f {
